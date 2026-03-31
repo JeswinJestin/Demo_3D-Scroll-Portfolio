@@ -5,30 +5,34 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
-    title: "Royal EduHub",
-    description: "Led iterative design improvements and enhanced SEO/UX for EdTech platform. Increased user engagement by 60%.",
-    year: "2025",
-  },
-  {
-    title: "Infinite FinCap",
-    description: "Product Associate Intern managing end-to-end frontend initiatives for a FinTech platform, streamlining workflows.",
-    year: "2024",
-  },
-  {
     title: "MediConnect",
-    description: "AI Health Platform presented at NCIPETC-25. Built cohesive UX mapping for complex healthcare data.",
+    description: "Unified AI health platform solving fragmented patient data. Cross-hospital app with AI chatbot; presented at NCIPETC-25.",
     year: "2024",
+    image: "/images/project-mediconnect.png"
   },
   {
-    title: "Product Space AI",
-    description: "AI Product Management Fellowship. Developing strategic product solutions leveraging modern AI tools.",
+    title: "Onset",
+    description: "FinTech product case study targeting investor decision overload. Built a 5-step goal-to-risk investment flow.",
     year: "2024",
+    image: "/images/project-onset.png"
+  },
+  {
+    title: "Revive",
+    description: "End-to-end UX research and design system for a cardiac wearable wristband, featuring luxury minimalist UI.",
+    year: "2024",
+    image: "/images/project-revive.jpg"
+  },
+  {
+    title: "Royal Edu Hub",
+    description: "Owned the end-to-end platform rebuild and A/B testing driving 3.2x organic impressions growth.",
+    year: "2025",
+    image: "/images/project-royaleduhub.png"
   },
 ];
 
 export const Projects = () => {
   return (
-    <section className="relative z-10 bg-black min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-24 border-t border-white/10">
+    <section id="work" className="relative z-10 bg-black min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-24 border-t border-white/10">
       <div className="max-w-7xl mx-auto space-y-16 md:space-y-24">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
@@ -53,6 +57,7 @@ export const Projects = () => {
               title={project.title}
               description={project.description}
               year={project.year}
+              image={project.image}
             />
           ))}
         </div>

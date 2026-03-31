@@ -7,24 +7,27 @@ interface OverlayProps {
 }
 
 export const Overlay = ({ scrollYProgress }: OverlayProps) => {
-  // First section: 0% to 15% fade out
+  // First section: 0% to 12% fade out completely
   const y1 = useTransform(scrollYProgress, [0, 0.15], [0, -100]);
-  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.15], [1, 1, 0]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.08, 0.12], [1, 1, 0]);
+  const blur1 = useTransform(scrollYProgress, [0, 0.08, 0.12], ["blur(0px)", "blur(0px)", "blur(10px)"]);
 
-  // Second section: fades in at 15%, peaks at 25%, fades out at 40%
-  const x2 = useTransform(scrollYProgress, [0.15, 0.25, 0.4], [-100, 0, 100]);
-  const opacity2 = useTransform(scrollYProgress, [0.15, 0.25, 0.4], [0, 1, 0]);
+  // Second section: 18% to 38%
+  const x2 = useTransform(scrollYProgress, [0.18, 0.28, 0.38], [-100, 0, 100]);
+  const opacity2 = useTransform(scrollYProgress, [0.18, 0.23, 0.33, 0.38], [0, 1, 1, 0]);
+  const blur2 = useTransform(scrollYProgress, [0.18, 0.23, 0.33, 0.38], ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"]);
 
-  // Third section: fades in at 40%, peaks at 55%, fades out at 75%
-  const x3 = useTransform(scrollYProgress, [0.4, 0.55, 0.75], [100, 0, -100]);
-  const opacity3 = useTransform(scrollYProgress, [0.4, 0.55, 0.75], [0, 1, 0]);
+  // Third section: 44% to 70%
+  const x3 = useTransform(scrollYProgress, [0.44, 0.54, 0.70], [100, 0, -100]);
+  const opacity3 = useTransform(scrollYProgress, [0.44, 0.49, 0.65, 0.70], [0, 1, 1, 0]);
+  const blur3 = useTransform(scrollYProgress, [0.44, 0.49, 0.65, 0.70], ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"]);
 
   return (
     <div className="absolute inset-0 z-10 pointer-events-none p-6 md:p-12 lg:p-24 flex flex-col justify-center overflow-hidden">
       
       {/* 0% Section - Center */}
       <motion.div 
-        style={{ y: y1, opacity: opacity1 }}
+        style={{ y: y1, opacity: opacity1, filter: blur1 }}
         className="absolute inset-0 flex flex-col items-center justify-center text-center px-4"
       >
         <h1 className="text-5xl md:text-[8rem] lg:text-[10rem] leading-[0.85] font-light tracking-tighter text-white mb-6">
@@ -38,7 +41,7 @@ export const Overlay = ({ scrollYProgress }: OverlayProps) => {
 
       {/* 25% Section - Left */}
       <motion.div 
-        style={{ x: x2, opacity: opacity2 }}
+        style={{ x: x2, opacity: opacity2, filter: blur2 }}
         className="absolute inset-0 flex flex-col items-start justify-center pl-[6%] md:pl-[12%]"
       >
         <h2 className="text-4xl md:text-[6rem] lg:text-[7.5rem] leading-[0.9] font-light tracking-tighter text-white max-w-4xl">
@@ -51,7 +54,7 @@ export const Overlay = ({ scrollYProgress }: OverlayProps) => {
 
       {/* 55% Section - Right */}
       <motion.div 
-        style={{ x: x3, opacity: opacity3 }}
+        style={{ x: x3, opacity: opacity3, filter: blur3 }}
         className="absolute inset-0 flex flex-col items-end justify-center pr-[6%] md:pr-[12%] text-right"
       >
         <h2 className="text-4xl md:text-[6rem] lg:text-[7rem] leading-[0.9] font-light tracking-tighter text-white max-w-4xl">

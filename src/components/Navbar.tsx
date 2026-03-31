@@ -3,7 +3,11 @@
 import { motion } from "framer-motion";
 
 export const Navbar = () => {
-  const links = ["Work", "About", "Contact"];
+  const links = [
+    { name: "About", href: "#about" },
+    { name: "Work", href: "#work" },
+    { name: "Contact", href: "#contact" }
+  ];
 
   return (
     <motion.header 
@@ -12,18 +16,21 @@ export const Navbar = () => {
       transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
       className="fixed top-0 left-0 right-0 z-[100] px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference"
     >
-      <div className="text-white font-semibold text-lg tracking-widest uppercase cursor-pointer">
+      <div 
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className="text-white font-semibold text-lg tracking-widest uppercase cursor-pointer"
+      >
         Jeswin
       </div>
 
       <nav className="hidden md:flex gap-8">
         {links.map((link, idx) => (
-          <div key={idx} className="relative group cursor-pointer">
+          <a key={idx} href={link.href} className="relative group cursor-pointer">
             <span className="text-white/70 hover:text-white transition-colors duration-300 text-sm tracking-widest font-light uppercase">
-              {link}
+              {link.name}
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
-          </div>
+          </a>
         ))}
       </nav>
 
