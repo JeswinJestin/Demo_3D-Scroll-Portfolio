@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Jeswin | Creative Developer",
-  description: "Senior Creative Developer specializing in Next.js, Framer Motion, and high-performance scroll interactions.",
+  title: "Jeswin | Product Associate",
+  description: "Product Associate specializing in UX/UI, Next.js, and high-performance scroll interactions.",
 };
 
 export default function RootLayout({
@@ -28,7 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

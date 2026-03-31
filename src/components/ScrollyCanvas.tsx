@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import { Overlay } from "./Overlay";
+import { IrisPreloader } from "./IrisPreloader";
 
 export const ScrollyCanvas = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const [loaded, setLoaded] = useState(false);
+  const [loadProgress, setLoadProgress] = useState(0);
   
   // Track scroll progress within the 500vh container
   const { scrollYProgress } = useScroll({
@@ -24,6 +26,8 @@ export const ScrollyCanvas = () => {
     if (initialized.current) return;
     initialized.current = true;
     
+    let loadedCount = 0;
+    
     const preloadImages = async () => {
       const loadFrame = (i: number) => {
         return new Promise<void>((resolve) => {
@@ -32,7 +36,17 @@ export const ScrollyCanvas = () => {
           const frameIndex = i.toString().padStart(4, '0');
           
           img.onload = () => {
-            if (i === 0) setLoaded(true);
+            loadedCount++;
+            setLoadProgress((loadedCount / totalFrames) * 100);
+            
+            // Release preloader early to prevent long waits, but ensure initial frames exist
+            if (loadedCount > 15 && !loaded) {
+              setLoaded(true);
+            }
+            // Fallback for safety
+            if (i === 0) {
+              // We won't set loaded=true immediately to allow progress to show
+            }
             
             if (typeof window !== 'undefined') {
               const latest = scrollYProgress.get();
@@ -44,7 +58,12 @@ export const ScrollyCanvas = () => {
             resolve();
           };
           
-          img.onerror = () => resolve(); // continue on error to not block queue
+          img.onerror = () => {
+            loadedCount++; // Count as loaded even on error to not stall progress
+            setLoadProgress((loadedCount / totalFrames) * 100);
+            if (loadedCount > 15 && !loaded) setLoaded(true);
+            resolve(); // continue on error to not block queue
+          };
           img.src = `/sequence/frame_${frameIndex}.webp`;
         });
       };
@@ -65,7 +84,7 @@ export const ScrollyCanvas = () => {
     };
     
     preloadImages();
-  }, []);
+  }, [loaded, scrollYProgress]);
 
   const drawFrame = (index: number) => {
     const canvas = canvasRef.current;
@@ -182,15 +201,7 @@ export const ScrollyCanvas = () => {
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-black flex items-center justify-center">
         <canvas ref={canvasRef} className="block w-full h-full" />
         <Overlay scrollYProgress={scrollYProgress} />
-        
-        {!loaded && (
-          <div className="absolute inset-0 bg-black flex items-center justify-center z-50">
-             <div className="flex flex-col items-center gap-4">
-                <div className="w-8 h-8 rounded-full border-t-2 border-white animate-spin"></div>
-                <span className="text-white/70 text-sm uppercase tracking-widest font-light">Loading Sequences</span>
-             </div>
-          </div>
-        )}
+        <IrisPreloader isLoading={!loaded} progress={loadProgress} />
       </div>
     </div>
   );
