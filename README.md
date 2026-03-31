@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# High-End Scrollytelling Personal Portfolio
 
-## Getting Started
+A premium, interactive personal portfolio website designed to showcase digital experiences, blending 3D-like scrollytelling sequences with modern glassmorphism UI elements.
 
-First, run the development server:
+![Portfolio Preview](./public/preview-demo.png) *(Preview snapshot representation)*
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **HTML5 Canvas Scrollytelling**: An ultra-smooth, scroll-driven sequence of 120 high-quality images rendering seamlessly on a `500vh` sticky canvas, providing a 3D video-scrubbing illusion without the weight of `<video>` tags.
+- **Framer Motion Parallax**: Cinematic entrance and exit animations for typography and UI elements perfectly synced to the user's scroll depth (`scrollYProgress`).
+- **Retina Displays Optimization**: Dynamic internal resolution upscaling calculation (`window.devicePixelRatio`) to guarantee butter-smooth vector-like crispness across all mobile and high-end workstation displays.
+- **Glassmorphism Projects Grid**: An advanced, beautifully crafted glass UI featuring thin borders (`border-white/10`), ambient radial glow states on hover, and structural blurring (`backdrop-blur-xl`).
+- **Tailwind CSS & Next.js 14**: Built heavily on the modern App Router architecture, ensuring high performance, layout preservation, and highly composable styling out of the box.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router, React Server Components)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Animation Engine**: [Framer Motion](https://www.framer.com/motion/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Graphics**: Vanilla HTML5 `<canvas>` Context API
+- **Icons**: [Lucide React](https://lucide.dev/)
 
-## Learn More
+## 🛠️ Installation & Setup
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/JeswinJestin/Demo_3D-Scroll-Portfolio.git
+   cd Demo_3D-Scroll-Portfolio
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+   *or if utilizing yarn/pnpm:* `yarn install` / `pnpm install`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+4. **Experience the Build**:
+   Navigate to `http://localhost:3000` in your browser. Scroll slowly to experience the sequence!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📂 Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/components/ScrollyCanvas.tsx`: The core logic dictating how the 120 `webp` frames are sequentially fetched in the background and rendered pixel-perfectly matching scroll behavior.
+- `src/components/Overlay.tsx`: The parallax floating text sections mapping to percentages (0-20%, 30-45%, 60-80%).
+- `src/components/Projects.tsx`: The curated digital works grid leveraging interactive glass states.
+- `src/components/Navbar.tsx`: Global navigation interface.
+- `src/components/SectionDivider.tsx`: Visual breaker bridging the immersive canvas and static data components.
+- `public/sequence/`: Internal directory hosting the optimized sequence frames.
+
+## 🤝 Contribution
+
+This repository is primarily a personal creative endeavor, but suggestions, tips, and structural refactors to enhance framerates or reduce Main Thread blocking are always highly appreciated! Feel free to open an issue or fork the project.
+
+---
+*Coded with precision to bridge design and engineering.*

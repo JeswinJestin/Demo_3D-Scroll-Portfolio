@@ -28,19 +28,19 @@ const projects = [
 
 export const Projects = () => {
   return (
-    <section className="relative z-10 bg-black min-h-screen py-32 px-6 md:px-24 border-t border-white/10">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section className="relative z-10 bg-black min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-24 border-t border-white/10">
+      <div className="max-w-7xl mx-auto space-y-16 md:space-y-24">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col gap-4"
+          className="flex flex-col gap-6"
         >
-          <h2 className="text-4xl md:text-7xl font-light tracking-tighter text-white">
-            Selected Works
+          <h2 className="text-5xl md:text-7xl lg:text-[7rem] leading-[0.9] font-light tracking-tighter text-white">
+            Selected <br className="hidden md:block"/>Works.
           </h2>
-          <p className="text-white/50 text-xl font-light max-w-2xl">
+          <p className="text-white/40 text-lg md:text-xl font-light max-w-xl leading-relaxed">
             A diverse collection of digital products and creative developments designed to leave a lasting impact.
           </p>
         </motion.div>
