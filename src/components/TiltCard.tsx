@@ -2,6 +2,7 @@
 
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import React, { useRef } from "react";
 
 interface TiltCardProps {
@@ -79,7 +80,7 @@ export const TiltCard = ({ title, description, year, index, image }: TiltCardPro
       {/* Optional Background Image */}
       {image && (
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden rounded-3xl">
-          <img src={image} alt={title} className="w-full h-full object-cover object-center opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" />
+          <Image src={image} alt={title} fill className="object-cover object-center opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 z-10" />
         </div>
       )}

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Accordion,
@@ -59,17 +60,12 @@ export const AboutSection = () => {
               </span>
             </div>
             
-            <img 
+            <Image 
               src="/images/about-thumbnail.png" 
-              alt="Jeswin Thomas Jestin" 
-              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 z-10"
-              onError={(e) => {
-                // Fallback to hide broken image icon until user places the image
-                (e.target as HTMLImageElement).style.opacity = '0';
-              }}
-              onLoad={(e) => {
-                (e.target as HTMLImageElement).style.opacity = '1';
-              }}
+              alt="Jeswin Thomas Jestin — Product Associate" 
+              fill
+              className="absolute inset-0 object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 z-10"
+              onError={() => {}}
             />
 
             {/* Overlay Gradient for readability of the text badge */}

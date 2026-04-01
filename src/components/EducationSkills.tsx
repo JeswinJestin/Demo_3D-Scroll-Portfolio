@@ -42,7 +42,7 @@ export const EducationSkills = () => {
             className="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-xl"
           >
             <span className="text-white/40 text-xs tracking-widest uppercase mb-2 block">Nov 2021 - June 2025</span>
-            <h3 className="text-2xl font-light text-white mb-2">St. Joseph's College of Engineering and Technology</h3>
+            <h3 className="text-2xl font-light text-white mb-2">St. Joseph&apos;s College of Engineering and Technology</h3>
             <p className="text-blue-400 font-medium text-sm mb-4">Palai, Kerala</p>
             <p className="text-white/80 text-sm leading-relaxed mb-6">
               Bachelor of Technology in Electronics and Computer Engineering.

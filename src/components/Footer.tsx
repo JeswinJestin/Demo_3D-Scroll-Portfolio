@@ -47,7 +47,7 @@ export const Footer = () => {
               viewport={{ once: true }}
               className="text-5xl md:text-7xl lg:text-9xl font-light tracking-tighter mb-8"
             >
-              Let's <br/>
+              Let&apos;s <br/>
               <span className="text-white/40">Talk.</span>
             </motion.h2>
 
