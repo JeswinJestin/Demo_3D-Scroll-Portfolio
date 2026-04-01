@@ -39,8 +39,8 @@ export const ScrollyCanvas = () => {
             loadedCount++;
             setLoadProgress((loadedCount / totalFrames) * 100);
             
-            // Release preloader early to prevent long waits, but ensure initial frames exist
-            if (loadedCount > 15 && !loaded) {
+            // Release preloader once first batch is ready
+            if (loadedCount >= 8 && !loaded) {
               setLoaded(true);
             }
             // Fallback for safety
@@ -68,18 +68,23 @@ export const ScrollyCanvas = () => {
         });
       };
 
-      // Load first 5 concurrently so user can see it instantly
-      const initialBatch = Math.min(5, totalFrames);
+      const BATCH_SIZE = 8; // Load 8 frames concurrently — safe for CDN limits
+
+      // Load first 8 immediately so the preloader releases fast
+      const initialBatch = Math.min(BATCH_SIZE, totalFrames);
       const initialPromises = [];
       for (let i = 0; i < initialBatch; i++) {
         initialPromises.push(loadFrame(i));
       }
       await Promise.all(initialPromises);
 
-      // Load the rest sequentially (1 by 1) in the background
-      // This ensures we never overload Chrome's concurrent request limits
-      for (let i = initialBatch; i < totalFrames; i++) {
-        await loadFrame(i);
+      // Load remaining frames in batches of 8 (parallel per batch)
+      for (let i = initialBatch; i < totalFrames; i += BATCH_SIZE) {
+        const batch = [];
+        for (let j = i; j < Math.min(i + BATCH_SIZE, totalFrames); j++) {
+          batch.push(loadFrame(j));
+        }
+        await Promise.all(batch);
       }
     };
     

@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import dynamic from "next/dynamic";
 import "./globals.css";
-import { SmoothScroll } from "@/components/SmoothScroll";
+
+// ssr: false is CRITICAL — Lenis reads window/document on init.
+// If it runs on the server (SSR), it breaks in production builds.
+const SmoothScroll = dynamic(
+  () => import("@/components/SmoothScroll").then((mod) => mod.SmoothScroll),
+  { ssr: false }
+);
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -86,9 +93,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
