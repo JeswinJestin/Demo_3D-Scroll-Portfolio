@@ -14,7 +14,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jeswin-portfolio.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jeswin-3-d-scroll-portfolio.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
