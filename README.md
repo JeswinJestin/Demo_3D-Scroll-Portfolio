@@ -1,60 +1,106 @@
-# High-End Scrollytelling Personal Portfolio
+<div align="center">
 
-A premium, interactive personal portfolio website designed to showcase digital experiences, blending 3D-like scrollytelling sequences with modern glassmorphism UI elements.
+![Portfolio Preview](./public/images/ReadMe_Preview_Img.png)
 
-![Portfolio Preview](./public/preview-demo.png) *(Preview snapshot representation)*
+# Jeswin Thomas Jestin — Portfolio
 
-## ✨ Key Features
+**Product Associate · PM Candidate · Builder**
 
-- **HTML5 Canvas Scrollytelling**: An ultra-smooth, scroll-driven sequence of 120 high-quality images rendering seamlessly on a `500vh` sticky canvas, providing a 3D video-scrubbing illusion without the weight of `<video>` tags.
-- **Framer Motion Parallax**: Cinematic entrance and exit animations for typography and UI elements perfectly synced to the user's scroll depth (`scrollYProgress`).
-- **Retina Displays Optimization**: Dynamic internal resolution upscaling calculation (`window.devicePixelRatio`) to guarantee butter-smooth vector-like crispness across all mobile and high-end workstation displays.
-- **Glassmorphism Projects Grid**: An advanced, beautifully crafted glass UI featuring thin borders (`border-white/10`), ambient radial glow states on hover, and structural blurring (`backdrop-blur-xl`).
-- **Tailwind CSS & Next.js 14**: Built heavily on the modern App Router architecture, ensuring high performance, layout preservation, and highly composable styling out of the box.
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-black?style=for-the-badge&logo=vercel)](https://jeswin-portfolio.vercel.app)
+[![Next.js](https://img.shields.io/badge/Next.js%2014-App%20Router-black?style=for-the-badge&logo=nextdotjs)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Framer Motion](https://img.shields.io/badge/Framer%20Motion-12-0055FF?style=for-the-badge&logo=framer)](https://www.framer.com/motion/)
+
+</div>
+
+---
+
+A high-end, 3D scrollytelling portfolio built to showcase product thinking, real startup metrics, and technical execution. Not a template — designed and shipped from scratch.
+
+## ✨ Features
+
+- **🎞️ 3D Canvas Scrollytelling** — 120-frame webp sequence rendered on a sticky `500vh` canvas, creating a video-scrubbing illusion with zero `<video>` overhead
+- **⚡ Framer Motion Parallax** — Cinematic text entrance/exit animations perfectly synced to `scrollYProgress`
+- **🪞 Glassmorphism UI** — Advanced glass cards with `backdrop-blur`, ambient hover glow, and thin `border-white/10` treatment
+- **📱 Fully Responsive** — Crisp on retina displays via dynamic `devicePixelRatio` upscaling
+- **🔍 Full SEO Suite** — OpenGraph, Twitter Cards, JSON-LD `Person` + `ProfilePage` schema, sitemap, and AI-crawler allowlists (GPTBot, ClaudeBot, PerplexityBot)
+- **🔒 Security Hardened** — CSP, HSTS, X-Frame-Options, Permissions-Policy, and zero `X-Powered-By` header via `next.config.mjs`
+- **♿ Accessible** — Semantic HTML5, proper `alt` attributes, Next.js `<Image>` for all assets
 
 ## 🚀 Tech Stack
 
-- **Framework**: [Next.js 14](https://nextjs.org/) (App Router, React Server Components)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Animation Engine**: [Framer Motion](https://www.framer.com/motion/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Graphics**: Vanilla HTML5 `<canvas>` Context API
-- **Icons**: [Lucide React](https://lucide.dev/)
+| Layer | Technology |
+|---|---|
+| Framework | [Next.js 14](https://nextjs.org/) (App Router) |
+| Language | [TypeScript 5](https://www.typescriptlang.org/) |
+| Animation | [Framer Motion 12](https://www.framer.com/motion/) |
+| Styling | [Tailwind CSS v3](https://tailwindcss.com/) |
+| Scroll | [Lenis](https://lenis.darkroom.engineering/) via `@studio-freight/react-lenis` |
+| UI Components | [Radix UI](https://www.radix-ui.com/) (Accordion) |
+| Graphics | Vanilla HTML5 Canvas API |
+| Icons | [Lucide React](https://lucide.dev/) |
+| Deployment | [Vercel](https://vercel.com/) |
 
-## 🛠️ Installation & Setup
+## 🛠️ Local Setup
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/JeswinJestin/Demo_3D-Scroll-Portfolio.git
-   cd Demo_3D-Scroll-Portfolio
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/JeswinJestin/Jeswin_3D-Scroll-Portfolio.git
+cd Jeswin_3D-Scroll-Portfolio
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-   *or if utilizing yarn/pnpm:* `yarn install` / `pnpm install`
+# Install dependencies
+npm install
 
-3. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
+# Start the development server
+npm run dev
+```
 
-4. **Experience the Build**:
-   Navigate to `http://localhost:3000` in your browser. Scroll slowly to experience the sequence!
+Open [http://localhost:3000](http://localhost:3000) and scroll slowly to experience the sequence.
 
-## 📂 Project Structure
+## 📂 Key Files
 
-- `src/components/ScrollyCanvas.tsx`: The core logic dictating how the 120 `webp` frames are sequentially fetched in the background and rendered pixel-perfectly matching scroll behavior.
-- `src/components/Overlay.tsx`: The parallax floating text sections mapping to percentages (0-20%, 30-45%, 60-80%).
-- `src/components/Projects.tsx`: The curated digital works grid leveraging interactive glass states.
-- `src/components/Navbar.tsx`: Global navigation interface.
-- `src/components/SectionDivider.tsx`: Visual breaker bridging the immersive canvas and static data components.
-- `public/sequence/`: Internal directory hosting the optimized sequence frames.
+```
+src/
+├── app/
+│   ├── layout.tsx          # Global metadata, OpenGraph, SEO
+│   ├── page.tsx            # JSON-LD structured data + page assembly
+│   ├── sitemap.ts          # Auto-generated sitemap.xml
+│   ├── robots.ts           # Crawler directives (incl. AI bots)
+│   ├── icon.png            # App favicon
+│   └── apple-icon.png      # iOS home screen icon
+├── components/
+│   ├── ScrollyCanvas.tsx   # Core 120-frame canvas scroll engine
+│   ├── Overlay.tsx         # Parallax text mapped to scroll depth
+│   ├── AboutSection.tsx    # Accordion-based professional story
+│   ├── ExperienceTimeline.tsx
+│   ├── Projects.tsx        # 3D tilt cards with project thumbnails
+│   ├── EducationSkills.tsx
+│   ├── Navbar.tsx
+│   └── Footer.tsx          # Contact form + social links
+public/
+├── images/                 # Project thumbnails, social preview, about photo
+└── sequence/               # 120 optimized webp frames for canvas
+next.config.mjs             # Security headers + image optimization
+vercel.json                 # Vercel deployment config
+```
 
-## 🤝 Contribution
+## 🔍 SEO & AI Search Optimization
 
-This repository is primarily a personal creative endeavor, but suggestions, tips, and structural refactors to enhance framerates or reduce Main Thread blocking are always highly appreciated! Feel free to open an issue or fork the project.
+This portfolio is optimized for both traditional search engines and LLM-based AI search platforms:
+
+- **Schema.org** `Person` + `ProfilePage` JSON-LD for Google rich results
+- **OpenGraph & Twitter Cards** for rich link previews on LinkedIn and social
+- AI crawlers explicitly allowed: `GPTBot`, `PerplexityBot`, `ClaudeBot`, `Google-Extended`
+- Canonical URL, meta keywords, and structured authorship signals
+
+## 🤝 About the Builder
+
+Built by **Jeswin Thomas Jestin** — PM Intern Candidate with hands-on experience shipping full-stack products at EdTech and FinTech startups. Two products shipped. Real metrics. Zero hand-holding.
+
+📩 [jeswinjestin203@gmail.com](mailto:jeswinjestin203@gmail.com) · [LinkedIn](https://www.linkedin.com/in/jeswinjestin) · [Behance](https://www.behance.net/jeswinjestin) · [GitHub](https://github.com/jeswinjestin)
 
 ---
-*Coded with precision to bridge design and engineering.*
+
+<div align="center">
+<sub>Coded with precision to bridge design and engineering.</sub>
+</div>
